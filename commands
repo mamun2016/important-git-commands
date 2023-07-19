@@ -1,0 +1,199 @@
+Git Commands (Mac)
+
+Bangla tutorial: https://www.youtube.com/watch?v=cPgIpUraWQo&list=PLgH5QX0i9K3qAW8DT6I0XOxC23qnA4FL-&index=1
+
+Git documentation: https://github.com/anisul-Islam/github-documentation
+
+Git cheatsheet:
+
+https://gist.github.com/keeperofthenecklace/3394158
+
+
+Git has three stages locally.
+
+Working directory / area (red files)
+Staging area (green files)
+Local repository (after commit)
+
+All the works we do are in the working area. Then we send them to staging area and then we commit them to the local repository and at last we push them to our remote repository on github.
+
+HEAD is always at the latest commit / branch.
+
+
+Version check: git --version
+Git command help: git some-command -h
+Enter a folder: cd folder-name
+Exit a folder by one step: cd ..
+Exit to root folder: cd
+Remove existing git setup: rm -rf .git
+Check all the files and folders in the current folder: ls or ls -a (-a is used to show hidden files)
+Initialise git in a folder: git init
+Create new file: touch file-name.extension
+Delete a file: rm file-name.extension
+Open a file: open file-name.extension
+Open a folder: go to the folder and then open .
+Clear terminal screen: clear or press control + L
+To see the present working folder or directory: pwd
+Create a directory or folder: mkdir name
+Delete or remove a directory: rmdir name
+
+To know the status of a working directory: git status. It will show all the new (untracked) and modified files. Then we send them to staging area with this command. git add file-name (for a single file) or git add . (for all the new untracked and modified files). From here we send them to local repository with git commit -m ‘message’ and at last we push them on remote repository with git push origin branch-name
+git status -s will show the status in short form. Left column is the staging area and the right column is the working directory.
+Green M means the file is present in staging area.
+Red M means this file is modified.
+Green A means the file is added in the staging area.
+Red question (?) means it’s a new untracked file. 
+We can stage and commit with a single command git commit -am ‘message’. This will not include newly created untracked files.
+To see all the staged files: git ls-files
+
+Download or pull all the latest codes from remote repo: git pull origin branch-name
+To check commit history: git log then come out of the screen Q or :Q
+If we want to see the latest 2 or 3 histories: git log -2 or git log -3
+If we want to see history briefly: git log --oneline, it will show short history of commits where the latest commit being at the top.
+git log --oneline --reverse will show the history in reverse order where the oldest commits will be at the top. 
+To discard or undo unstaged file changes (red color files):
+git restore file-name or git restore .
+git checkout file-name or git checkout .
+
+To remove all the new untracked files git clean -f (-f to force as it physically removes files). To remove whole directories git clean -fd
+To unstage files from staging area (green color to red color):
+git restore --staged file-name or git restore --staged .
+git rm --cached file-name or git rm --cached .
+Remove a folder (bin) from staging area. git rm --cached bin/ or
+remove it recursively git rm --cached -r bin/
+To go back to a previous commit by deleting all the later commits / histories:
+git reset commit-id
+git log will show all the commits with a unique commit-id. 
+
+To undo or delete commit:
+First: If you want to just undo commit and keep all the files intact in the staging area (green color) then: git reset --soft HEAD^
+Second: If you want to undo commit and remove them from the staging area (red color) then:
+git reset HEAD^
+Third: If you want to undo commit and discard or remove all changes and go back to the previous commit state then: git reset --hard HEAD^
+
+To undo multiple commits serially (latest to oldest):
+git reset --soft HEAD~2 or git reset --soft HEAD~3
+If we want to see what did we change / modify in the files, we use git diff and it will show us the difference but for this, these files has to be staged (git add .) first and then compare the new changes (red files).
+To see details of a commit: git show, it will show the details of the latest commit. If we want to see details of another commit:
+git show commit-id (or the first 7 characters of the id) or
+git show HEAD~1 or git show HEAD~2 HEAD is at 0. So 1 means 1 step earlier commit.
+If we git log then it shows all the commit id’s. 
+To move from one commit to another commit: git checkout commit-id (It will show HEAD detached). If we want to go back to the latest commit then: git checkout master 
+To update other latest commits from master branch to the current branch: git rebase master 
+
+
+Remote repository:
+
+To check if there’s a remote repo for this local repo: git remote or git remote -v, if it returns nothing that means there’s no remote.
+Add or link remote repository with the local repository:
+git remote add origin git-SSH-link from the git repo. origin is actually the HTTPS link’s reference. We can write anything else instead of origin. From next time we don’t have to write the entire HTTP link to push or pull our codes, instead we can only write origin. git remote will show the reference name (origin) and git remote -v will show the remote details.
+Clone or copy a remote repository to local: First go to the desired location where the folder will be cloned, then: git clone git-SSH-link or git clone git-HTTPS-link
+
+
+Push, Pull and fetch:
+
+Once the files are in the local repository (after commit), we have to push them to the remote repository. For that we use, git push origin git-branch-name. If we have to force any action, we need to add -f flag. git push origin git-branch-name -f
+If we want to update our local repo with the latest codes from the remote repo, we can write, git pull origin git-branch-name.
+Cancel or undo git pull merge conflict:
+git merge --abort
+git reset --hard HEAD
+git fetch syncs the local codes with the remote server but doesn’t merge like git pull. With this command we can have all the branches that are present in the remote.
+Video: https://www.youtube.com/watch?v=Mdo7hvlUJ-U
+
+
+Branching:
+
+Create a branch locally: git branch branch-name. It will create a copy of the current / active branch in the new branch.
+To see all the local branch list: git branch. The branch with an asterisk (*) is my current / active branch.
+To move / switch to a branch: git checkout branch-name
+To switch between the last two branches: git checkout -
+To create a branch and move / switch to the branch immediately: git checkout -b branch-name
+Delete a branch: git branch -d branch-name or git branch -D branch-name. We can’t delete an active or current branch. We have to switch to another branch to delete a particular branch.
+
+
+Stashing:
+
+If we make changes in a wrong branch and we don’t want to loose them, we need to stash them so that we don’t loose all the changes that we made.
+
+To copy all the codes: git stash. This command will store all the changes in memory and we can bring them back later. git stash -u is used to stash untracked files also.
+To use the saved stash:
+git stash apply (It will keep the stashed copy in the memory) or
+git stash pop (It will delete / clear the stashed copy in the memory)
+git stash pop = git stash apply + git stash drop
+
+We can create multiple stashes with individual names: git stash save “Name of the stash”
+To see the stash list: git stash list (It will give all the stashes’ names and ids to be used later. Ex: stash@{0}, stash@{1}) 
+To use individual stash: git stash apply stash@{0} or git stash pop stash@{0} (pop will delete that individual stash)
+We can use index number to apply stash: git stash apply 0 or git stash pop 1 (0 is the latest stash)
+If we have multiple stashes, stash@{0} will always be the lates / last stash.
+If we don’t mention any stash id then, git stash pop will apply the latest stash and drop / delete the latest (stash@{0}) stash.
+To delete / clear individual stash: git stash drop stash-id
+To delete / clear all the stashes all together: git stash clear
+
+
+Video: https://www.youtube.com/watch?v=KLEDKgMmbBI
+
+
+Merging locally:
+
+To merge one branch to another locally: git merge branch-name. This will merge the other branch with the current or active branch. For example, If I am in the master branch and want to merge dev branch with it, then: git merge dev
+
+
+Resolve merge conflict on git
+
+git rebase or git merge might show some merge conflicts. We have to resolve the conflicts and then follow the instructions given on the terminal.
+
+git rebase —continue, git commit -am “commit message”
+
+
+
+If it shows text on the command prompt and ask to write commit messages then :wq <enter> and it will come out of the screen. Sometimes might need to click Ctrl + c
+
+Video: https://www.youtube.com/watch?v=LapVNu99qU8&list=PLgH5QX0i9K3qAW8DT6I0XOxC23qnA4FL-&index=21
+
+
+
+Fast forward merge or 2 way merge:
+
+Watch the video if needed: https://www.youtube.com/watch?v=FbX_MpqSLfc&list=PLgH5QX0i9K3qAW8DT6I0XOxC23qnA4FL-&index=19
+
+
+
+3 way merge:
+
+Watch the video if needed: https://www.youtube.com/watch?v=dPSB-UhioJw&list=PLgH5QX0i9K3qAW8DT6I0XOxC23qnA4FL-&index=21
+
+
+Fork and clone:
+
+
+If we want to contribute to others’ repo, we use these features. 
+
+Video: https://www.youtube.com/watch?v=FH0wptOLukk&list=PLgH5QX0i9K3qAW8DT6I0XOxC23qnA4FL-&index=23
+
+
+Collaboration in team:
+
+If a team members decide to work together in a single repair, they need to collaborate and share read-write permissions in the repo.
+
+
+Video: https://www.youtube.com/watch?v=nS9QbJt4KaQ&list=PLgH5QX0i9K3qAW8DT6I0XOxC23qnA4FL-&index=24
+
+
+Visualising how git works: https://git-school.github.io/visualizing-git/
+
+
+Change HTTPS to SSH: Do this to switch to SSH:
+
+git remote -v
+
+git remote set-url origin SSH-link
+
+example: git remote set-url origin git@github.com:mamun-khandaker/test-git.git
+
+
+
+For unrelated histories pull
+
+git pull origin master --allow-unrelated-histories
+
