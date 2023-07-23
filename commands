@@ -15,7 +15,8 @@ Working directory / area (red files)
 Staging area (green files)
 Local repository (after commit)
 
-All the works we do are in the working area. Then we send them to staging area and then we commit them to the local repository and at last we push them to our remote repository on github.
+All the works we do are in the working area. Then we send them to staging area and then we commit them to the local 
+repository and at last we push them to our remote repository on github.
 
 HEAD is always at the latest commit / branch.
 
@@ -37,7 +38,9 @@ To see the present working folder or directory: pwd
 Create a directory or folder: mkdir name
 Delete or remove a directory: rmdir name
 
-To know the status of a working directory: git status. It will show all the new (untracked) and modified files. Then we send them to staging area with this command. git add file-name (for a single file) or git add . (for all the new untracked and modified files). From here we send them to local repository with git commit -m ‘message’ and at last we push them on remote repository with git push origin branch-name
+To know the status of a working directory: git status. It will show all the new (untracked) and modified files. 
+Then we send them to staging area with this command. git add file-name (for a single file) or git add . (for all the new untracked and modified files). 
+From here we send them to local repository with git commit -m ‘message’ and at last we push them on remote repository with git push origin branch-name
 git status -s will show the status in short form. Left column is the staging area and the right column is the working directory.
 Green M means the file is present in staging area.
 Red M means this file is modified.
@@ -73,7 +76,8 @@ Third: If you want to undo commit and discard or remove all changes and go back 
 
 To undo multiple commits serially (latest to oldest):
 git reset --soft HEAD~2 or git reset --soft HEAD~3
-If we want to see what did we change / modify in the files, we use git diff and it will show us the difference but for this, these files has to be staged (git add .) first and then compare the new changes (red files).
+If we want to see what did we change / modify in the files, we use git diff and it will show us the difference but for this, these files has 
+to be staged (git add .) first and then compare the new changes (red files).
 To see details of a commit: git show, it will show the details of the latest commit. If we want to see details of another commit:
 git show commit-id (or the first 7 characters of the id) or
 git show HEAD~1 or git show HEAD~2 HEAD is at 0. So 1 means 1 step earlier commit.
@@ -86,13 +90,16 @@ Remote repository:
 
 To check if there’s a remote repo for this local repo: git remote or git remote -v, if it returns nothing that means there’s no remote.
 Add or link remote repository with the local repository:
-git remote add origin git-SSH-link from the git repo. origin is actually the HTTPS link’s reference. We can write anything else instead of origin. From next time we don’t have to write the entire HTTP link to push or pull our codes, instead we can only write origin. git remote will show the reference name (origin) and git remote -v will show the remote details.
+git remote add origin git-SSH-link from the git repo. origin is actually the HTTPS link’s reference. We can write anything else instead of origin. 
+From next time we don’t have to write the entire HTTP link to push or pull our codes, instead we can only write origin. git remote will show the 
+reference name (origin) and git remote -v will show the remote details.
 Clone or copy a remote repository to local: First go to the desired location where the folder will be cloned, then: git clone git-SSH-link or git clone git-HTTPS-link
 
 
 Push, Pull and fetch:
 
-Once the files are in the local repository (after commit), we have to push them to the remote repository. For that we use, git push origin git-branch-name. If we have to force any action, we need to add -f flag. git push origin git-branch-name -f
+Once the files are in the local repository (after commit), we have to push them to the remote repository. For that we use, git push origin git-branch-name. 
+If we have to force any action, we need to add -f flag. git push origin git-branch-name -f
 If we want to update our local repo with the latest codes from the remote repo, we can write, git pull origin git-branch-name.
 Cancel or undo git pull merge conflict:
 git merge --abort
@@ -136,7 +143,8 @@ Video: https://www.youtube.com/watch?v=KLEDKgMmbBI
 
 Merging locally:
 
-To merge one branch to another locally: git merge branch-name. This will merge the other branch with the current or active branch. For example, If I am in the master branch and want to merge dev branch with it, then: git merge dev
+To merge one branch to another locally: git merge branch-name. This will merge the other branch with the current or active branch. For example, If I am in the 
+master branch and want to merge dev branch with it, then: git merge dev
 
 
 Resolve merge conflict on git
